@@ -7,8 +7,8 @@
  * 
  */
  $jslog_input = json_decode($HTTP_RAW_POST_DATA,true);
- var_dump($jslog_input);
  $jslog_msg = $jslog_input["lg"][0]["m"];
  $jslog_timestamp = $jslog_input["lg"][0]["t"];
- //error_log("[JSPHPLog]: $jslog_msg", 0);
+ error_log("[JSPHPLog]: $jslog_msg", 0);
+ echo(json_encode(array('log_status','success')));
 ?>
