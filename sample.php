@@ -6,13 +6,11 @@
   <title> </title>
  </head>
  <body>
-  <p>Sample JSPHPLog Code. Configures the logger then submits a log message.</p>
+ <p>Sample JSPHPLog Code. Configures the logger then submits a log message.</p>
+ </body>
   <!-- Include the JSNLog Javascript on the page, and set up the parameters -->
   <?php include "jslog_config.php";?>
   <script language="javascript">
   	JL().info("This message sent from JSNLog");
-  	JL().fatal("Fatal Test Message");
-  	JL().warn("Warn Test Message");
   </script>
- </body>
 </html>
