@@ -7,10 +7,11 @@
  </head>
  <body>
  <p>Sample JSPHPLog Code. Configures the logger then submits a log message.</p>
- </body>
-  <!-- Include the JSNLog Javascript on the page, and set up the parameters -->
+ <!-- Include the JSNLog Javascript on the page, and set up the parameters -->
   <?php include "jslog_config.php";?>
   <script language="javascript">
   	JL().info("This message sent from JSNLog");
   </script>
+ </body>
+  
 </html>
