@@ -18,13 +18,17 @@
  <script type="text/javascript" src="<?php echo($jsnlog_opts["src"]);?>"></script>
  <script language="javascript">
   	var appender = JL.createAjaxAppender();
-  	<?php if (count($jsnlog_opts["apndOpts"]) > 0) {?>
-  	appender.setOptions({
-	 <?php foreach($jsnlog_opts["apndOpts"] as $k => $v) {?>
-	  "<?php echo($k)?>":"<?php echo($v)?>",
-	 <?php }?>
-  	});
-  	<?php }?>
+  	<?php
+  	$js_output = "";
+  	if (count($jsnlog_opts["apndOpts"]) > 0) {
+  		$js_output = "appender.setOptions({";
+  		foreach($jsnlog_opts["apndOpts"] as $k => $v) {
+	  		$js_output .= "\"$k\":\"$v\",";
+	 	}
+  		$js_output .= "});\n";
+  	}
+  	echo($js_output);
+  	?>
   	JL().setOptions({
   		"appenders": [appender]
   	});
