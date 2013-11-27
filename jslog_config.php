@@ -21,11 +21,7 @@
   	<?php
   	$js_output = "";
   	if (count($jsnlog_opts["apndOpts"]) > 0) {
-  		$js_output = "appender.setOptions({";
-  		foreach($jsnlog_opts["apndOpts"] as $k => $v) {
-	  		$js_output .= "\"$k\":\"$v\",";
-	 	}
-  		$js_output .= "});\n";
+  		$js_output = "appender.setOptions(".json_encode($jsnlog_opts["apndOpts"]).");\n";
   	}
   	echo($js_output);
   	?>
