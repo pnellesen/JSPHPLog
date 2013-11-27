@@ -8,17 +8,25 @@
  * implement JSNLog on. Needs to be before the JSNLog loggers are initialized
  */
  $jsnlog_opts = Array(
- 	"src" => "/lib/jsnlog.min.js",// Location of the jsnlog Javascript file
- 	"url" => "jslog_logger.php"// URL to send the logs to
+ 	"src" => "/lib/jsnlog.min.js",// Location of the jsnlog Javascript file,
+ 	"apndOpts" => Array (
+ 		"url" => "jslog_logger.php",// URL to send the logs to
+ 		"batchSize" => 3
+ 	)
  );
  ?>
  <script type="text/javascript" src="<?php echo($jsnlog_opts["src"]);?>"></script>
  <script language="javascript">
   	var appender = JL.createAjaxAppender();
+  	<?php if (count($jsnlog_opts["apndOpts"]) > 0) {?>
   	appender.setOptions({
-  		"url":"<?php echo($jsnlog_opts["url"]);?>"
+	 <?php foreach($jsnlog_opts["apndOpts"] as $k => $v) {?>
+	  "<?php echo($k)?>":"<?php echo($v)?>",
+	 <?php }?>
   	});
+  	<?php }?>
   	JL().setOptions({
   		"appenders": [appender]
   	});
  </script>
+ 
