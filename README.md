@@ -14,7 +14,7 @@ Configuration options
   
     <VirtualHost *:80>
     ...
-    SetEnv JSLogConfig {"src":"jsnlog.min.js","appenderOpts":{"url":"jslog_logger.php","batchSize":3}}
+    SetEnv JLAppenderCfg {"appenderOpts":{"url":"jslog_logger.php","batchSize":3}}
     </VirtualHost>
     
-  jslog_config.php will look for the $_SERVER["JSLogConfig"] variable and will set up the JSNLog Javascript accordingly.
+  jslog_config.php will look for the $_SERVER["JLAppenderCfg"] variable and will set up the JSNLog Javascript accordingly.
