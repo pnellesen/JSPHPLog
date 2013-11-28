@@ -7,25 +7,20 @@
  * Include this script on any page/site you wish
  * implement JSNLog on. Needs to be before the JSNLog loggers are initialized
  */
- if (isset($_SERVER["JSLogConfig"])) {
-	$JSLogConfig = json_decode($_SERVER["JSLogConfig"],true);// User server ENV variable if found;
- } else {
- 	$JSLogConfig = Array(
-	 	"src" => "/lib/jsnlog.min.js",// Location of the jsnlog Javascript file,
-	 	"appenderOpts" => Array (
-	 		"url" => "jslog_logger.php",// URL to send the logs to
-	 		"batchSize" => 3
-	   )
-	);
+ if (isset($_SERVER["JLAppenderCfg"])) {
+	$JLAppenderCfg = json_decode($_SERVER["JLAppenderCfg"],true);// User server ENV variable if found;
+ }
+ if (isset($_SERVER["JLLoggerCfg"])) {
+ 	$JLLoggerCfg = json_decode($_SERVER["JLLoggerCfg"],true);// User server ENV variable if found;
  }
  ?>
- <script type="text/javascript" src="<?php echo($JSLogConfig["src"]);?>"></script>
+ <script type="text/javascript" src="/lib/jsnlog.min.js"></script>
  <script language="javascript">
   	var appender = JL.createAjaxAppender();
   	<?php
   	$js_output = "";
-  	if (count($JSLogConfig["appenderOpts"]) > 0) {
-  		$js_output = "appender.setOptions(".json_encode($JSLogConfig["appenderOpts"]).");\n";
+  	if (isset($JLAppenderCfg) && count($JLAppenderCfg["appenderOpts"]) > 0) {
+  		$js_output = "appender.setOptions(".json_encode($JLAppenderCfg["appenderOpts"]).");\n";
   	}
   	echo($js_output);
   	?>
