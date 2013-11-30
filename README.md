@@ -5,10 +5,10 @@ PHP Server side implementation for JSNLog (http://js.jsnlog.com/)
 
 Uses the "error_log" command to save the log message from the JSNLog AJAX request to the default error log.
 
-Example output:
+Example output:<br/>
 [Tue Nov 26 15:43:22 2013] [error] [client xxx.xxx.xxx.xxx] [JSPHPLog]: This message sent from JSNLog, referer: http://*client site*/JSPHPLog/sample.php
 
-Configuration options
+<h3>Configuration options</h3>
 
   <p><b>Default</b></p>
   To use the default appender and logger, simply copy the "jsnlog.logger" and "jslog_config.php" files to your website root directory, then add an Apache handler directive (to either "httpd.conf" or ".htaccess") to process the .logger file as .php:
@@ -32,4 +32,4 @@ Configuration options
 	    </FilesMatch>
     </VirtualHost>
     
-  jslog_config.php will look for the $_SERVER["JLAppenderCfg"] and $_SERVER["JLLoggerCfg"] variables and will set up the JSNLog Javascript accordingly.
+  jslog_config.php will look for the $\_SERVER["JLAppenderCfg"] and $\_SERVER["JLLoggerCfg"] variables and will set up the JSNLog Javascript accordingly.
