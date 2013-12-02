@@ -11,25 +11,19 @@ Example output:<br/>
 <h3>Configuration options</h3>
 
   <p><b>Default</b></p>
-  To use the default appender and logger, simply copy the "jsnlog.logger" and "jslog.config.php" files to your website root directory, then add an Apache handler directive (to either "httpd.conf" or ".htaccess") to process the .logger file as .php:
-    
-    <VirtualHost *:80>
-    	...
-    	<FilesMatch "\jsnlog.logger$">
-    		SetHandler application/x-httpd-php
-    	</FilesMatch>
-    </VirtualHost>
+  To use the default appender and logger, simply copy "jsnlog.logger.php","jsnlog.config.php", and "jsnlog.ini.php" files to your website root directory.
     
    <p><b>Custom configuration (simple)</b></p>
-   To customize the Appenders or Logger configuration settings, use Apache2 "SetEnv" directives inside \<VirtualHost\> to set the JSON options objects for both:
-  
-    <VirtualHost *:80>
-    ...
-	    SetEnv JLAppenderCfg {"level":2000,"batchSize":3}
-	    SetEnv JLLoggerCfg {}
-		<FilesMatch "\jsnlog.logger$">
-	    	SetHandler application/x-httpd-php
-	    </FilesMatch>
-    </VirtualHost>
+   To customize the Appenders or Logger configuration settings, you can add appender options to the "jsnlog.ini.php" file. For instance, to change change the "batchSize"
+   or "level" options for the default appender, set up the first "[appender]" section as shown below: 
+
+   <code>
+   [appender]
+	url="jsnlog.logger.php"
+	; add other appender options as well
+	batchSize=2
+	level=2000
+	; name="appender 1"
+	</code>
     
-  jslog_config.php will look for the $\_SERVER["JLAppenderCfg"] and $\_SERVER["JLLoggerCfg"] variables and will set up the JSNLog Javascript accordingly.
+  jsnlog.config.php set up the JSNLog Javascript accordingly.
