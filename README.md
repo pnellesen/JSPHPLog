@@ -17,13 +17,13 @@ Example output:<br/>
    To customize the Appenders or Logger configuration settings, you can add appender options to the "jsnlog.ini.php" file. For instance, to change change the "batchSize"
    or "level" options for the default appender, set up the first "[appender]" section as shown below: 
 
-   <code>
+   ```
    [appender]
 	url="jsnlog.logger.php"
 	; add other appender options as well
 	batchSize=2
 	level=2000
 	; name="appender 1"
-	</code>
+   ```
     
-  jsnlog.config.php set up the JSNLog Javascript accordingly.
+  jsnlog.config.php sets up the JSNLog Javascript automatically.
