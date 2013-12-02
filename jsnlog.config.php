@@ -8,16 +8,10 @@
  * Include this script on any page/site you wish
  * implement JSNLog on. Needs to be before the JSNLog loggers are initialized
  */
- $JLAppenderCfg = "";
+ $JLAppenderCfg = json_decode('{"url":"jsnlog.logger.php"}');
  $JLLoggerCfg = "";
  $js_output = "";
- if (isset($_SERVER["JLAppenderCfg"])) {
-	$JLAppenderCfg = json_decode($_SERVER["JLAppenderCfg"],true);// User server ENV variable if found;
- }
- if (isset($_SERVER["JLLoggerCfg"])) {
- 	$JLLoggerCfg = json_decode($_SERVER["JLLoggerCfg"],true);// User server ENV variable if found;
- }
- if ($JLAppenderCfg != "" || $JLLoggerCfg != "") {
+  if ($JLAppenderCfg != "" || $JLLoggerCfg != "") {
  	$js_output = "<script language=\"javascript\">\n";
  	if ($JLAppenderCfg != "") {
  		$js_output .= "var appender = JL.createAjaxAppender();\n";

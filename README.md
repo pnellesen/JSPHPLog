@@ -11,7 +11,7 @@ Example output:<br/>
 <h3>Configuration options</h3>
 
   <p><b>Default</b></p>
-  To use the default appender and logger, simply copy the "jsnlog.logger" and "jslog_config.php" files to your website root directory, then add an Apache handler directive (to either "httpd.conf" or ".htaccess") to process the .logger file as .php:
+  To use the default appender and logger, simply copy the "jsnlog.logger" and "jslog.config.php" files to your website root directory, then add an Apache handler directive (to either "httpd.conf" or ".htaccess") to process the .logger file as .php:
     
     <VirtualHost *:80>
     	...
