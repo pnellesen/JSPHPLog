@@ -8,7 +8,6 @@ url="jsnlog.logger.php"
 
 ; add other appender options as well
 ; batchSize=2
-; name="appender 1"
 ; level=2000
 
 ;[logger]
