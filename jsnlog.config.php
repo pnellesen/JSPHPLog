@@ -1,4 +1,4 @@
-<script type="text/javascript" src="/lib/jsnlog.min.js"></script>
+<script type="text/javascript" src="jsnlog.min.js"></script>
 <?php
 /*
  * Created on Nov 25, 2013
