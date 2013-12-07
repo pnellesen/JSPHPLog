@@ -19,33 +19,45 @@ $JL_output = "";
 if (is_array($JLCfg) && count($JLCfg) > 0) {
 	$js_output = "<script language=\"javascript\">\n";		
 	foreach(array_keys($JLKeys) as $key => $item) {
-	 	if (array_key_exists('type',$JLCfg[$key]) and $JLCfg[$key]['type'] == "appender") {
-	 		// Set up Appenders
-		 	$appender_output .= "var " . $item . "= JL.createAjaxAppender();\n";
-		 	if (array_key_exists('options',$JLCfg[$key]) && count($JLCfg[$key]['options']) > 0) {
-		 		$appender_output .= $item . ".setOptions(".json_encode($JLCfg[$key]['options']).");\n";
-		 	}
-		 	array_push($appender_ids,$item);
-	 	} elseif (array_key_exists('type',$JLCfg[$key]) and $JLCfg[$key]['type'] == "logger") {
-	 		// Set up Loggers
-	 		$logger_output .= "var " . $item . "=JL('" . $item. "');\n";
-	 		if (array_key_exists('options',$JLCfg[$key]) && count($JLCfg[$key]['options']) > 0) {
-	 			$logger_output .= $item . ".setOptions(".json_encode($JLCfg[$key]['options']).");\n";
-	 		} elseif (array_key_exists('appenders',$JLCfg[$key]) && $JLCfg[$key]['appenders'] != '') {
-	 			$logger_output .= $item . ".setOptions({\"appenders\":[" .$JLCfg[$key]['appenders'] . "]});\n";
-	 		}
-	 	} elseif (array_key_exists('type',$JLCfg[$key]) and $JLCfg[$key]['type'] == "JL" && array_key_exists('options',$JLCfg[$key]) && count($JLCfg[$key]['options']) > 0) {
-	 		$JL_output .= $item . ".setOptions(".json_encode($JLCfg[$key]['options']).");\n";
-	 	}
+		if (array_key_exists('type',$JLCfg[$key])) {
+			switch ($JLCfg[$key]['type']) {
+				case 'appender':
+					// Set up Appenders
+					$appender_output .= "var " . $item . "= JL.createAjaxAppender();\n";
+				 	if (array_key_exists('options',$JLCfg[$key]) && count($JLCfg[$key]['options']) > 0) {
+				 		$appender_output .= $item . ".setOptions(".json_encode($JLCfg[$key]['options']).");\n";
+				 	}
+				 	array_push($appender_ids,$item);
+				 	break;
+				case 'logger':
+			 		// Set up Loggers
+			 		$logger_output .= "var " . $item . "=JL('" . $item. "');\n";
+			 		if (array_key_exists('options',$JLCfg[$key]) && count($JLCfg[$key]['options']) > 0) {
+			 			$logger_output .= $item . ".setOptions(".json_encode($JLCfg[$key]['options']).");\n";
+			 		}
+			 		if (array_key_exists('appenders',$JLCfg[$key]) && $JLCfg[$key]['appenders'] != '') {
+			 			$logger_output .= $item . ".setOptions({\"appenders\":[" .$JLCfg[$key]['appenders'] . "]});\n";
+			 		}				
+					break;
+				case 'JL':
+					// Set up global Logger options
+					if (array_key_exists('enabled',$JLCfg[$key])) {$JL_output .= $item . ".setOptions({\"enabled\":" . $JLCfg[$key]['enabled'] . "});\n";}
+					if (array_key_exists('options',$JLCfg[$key]) && count($JLCfg[$key]['options']) > 0) {
+						$JL_output .= $item . ".setOptions(".json_encode($JLCfg[$key]['options']).");\n";
+					}
+					break;
+			}
+		}
  	}	
 	$js_output .= $appender_output;
 	
 	if ($logger_output != "") {// named logger configs found
+		$js_output .= "JL().setOptions({\"appenders\": [" . $appender_ids[0] . "]});\n";// Set up the default Logger with default appender
 		$js_output .= $logger_output;
-	} else {// use default Logger
-		$js_output .= "JL().setOptions({\"appenders\": [" . implode(",",$appender_ids) . "]});\n";	
+	} else {
+		$js_output .= "JL().setOptions({\"appenders\": [" . implode(",",$appender_ids) . "]});\n";// Set up the default Logger with all appenders
+		
 	}
-	
 	$js_output .= $JL_output;
 	$js_output .= "</script>\n";
 }
