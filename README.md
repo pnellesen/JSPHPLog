@@ -22,11 +22,11 @@ Example output:<br/>
 
    ```
    [appender]
-	url="jsnlog.logger.php"
+	type="appender"
+	options[url]="jsnlog.logger.php"
 	; add other appender options as well
-	batchSize=2
-	level=2000
-	; name="appender 1"
+	options[batchSize]=2
+	options[level]=2000
    ```
     
   
