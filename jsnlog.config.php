@@ -41,14 +41,13 @@ if (is_array($JLCfg) && count($JLCfg) > 0) {
 					break;
 				case 'JL':
 					// Set up global Logger options
-					if (array_key_exists('enabled',$JLCfg[$key])) {$JL_output .= $item . ".setOptions({\"enabled\":" . $JLCfg[$key]['enabled'] . "});\n";}
 					if (array_key_exists('options',$JLCfg[$key]) && count($JLCfg[$key]['options']) > 0) {
 						$JL_output .= $item . ".setOptions(".json_encode($JLCfg[$key]['options']).");\n";
 					}
 					break;
 			}
 		}
- 	}	
+	}	
 	$js_output .= $appender_output;
 	
 	if ($logger_output != "") {// named logger configs found

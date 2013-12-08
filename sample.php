@@ -11,8 +11,8 @@
   <script language="javascript">
   	JL().info("Info message sent from JSNLog");
   	JL().trace("Trace message sent from JSNLog");//Won't be sent with default config'
-  	JL().warn("Warn message sent from JSNLog");
-  	JL().error("Error message sent from JSNLog");
+  	JL('logger_1').warn("Warn message sent from JSNLog");
+  	JL('logger_1').error("Error message sent from JSNLog");
   </script>
  </body>
   
