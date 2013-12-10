@@ -4,13 +4,13 @@
 ; see JSNLog (http://js.jsnlog.com/) documentation for additional information
 
 ; --------------------------------------------------------------------------------
-; Default appender setup. Will be used for all non-named loggers.
+; Default Javascript Appender setup. Will be used for all non-named Javascript Loggers.
 ; --------------------------------------------------------------------------------
 [appender] 
 type="appender" ;type field is required. Can be "appender","logger","JL", or "server"
 options[url]="jsnlog.logger.php";
 
-; Add additional JSNLog Appender options as shown below (Default values indicated)
+; Add additional Javascript Appender options as shown below (Default values indicated)
 ;options[level]="TRACE"
 ;options[userAgentRegex]=''
 ;options[ipRegex]=''
@@ -21,7 +21,7 @@ options[url]="jsnlog.logger.php";
 ;options[batchSize]=1
 
 ; ---------------------------------------------
-; You can add additional appenders as desired.
+; You can add additional Javascript  appenders as desired.
 ; ---------------------------------------------
 ;[appender_1] 
 ;type="appender" 
@@ -36,7 +36,7 @@ options[url]="jsnlog.logger.php";
 ;options[level]=2000
 
 ; ----------------------------------------------------------------------------------------------------------
-; You can also add additional loggers and logger options. Note that the Logger calls in your Javascript
+; You can also add additional Javascript loggers and logger options. Note that the Javascript Logger calls 
 ; must reference the correct logger if named loggers are used (i.e. "JL('logger_1').info('Info message');")
 ; ----------------------------------------------------------------------------------------------------------
 ;[logger_1] 
@@ -49,7 +49,7 @@ options[url]="jsnlog.logger.php";
 ;options[onceOnly]=''
 
 ; ------------------------------------
-; Set Global options for all Loggers
+; Set Global options for all Javascript Loggers
 ; ------------------------------------
 ;[JL]
 ;type="JL"
@@ -63,3 +63,6 @@ options[url]="jsnlog.logger.php";
 ; --------------------------------------------------------------------------------
 ;[server]
 ;type="server"
+;msg_type="0" ;see PHP "error_log" documentation for message type options
+;destination="" ;see PHP "error_log" documentation for destination options
+;extra_headers="" ;see PHP "error_log" documentation for extra header options
